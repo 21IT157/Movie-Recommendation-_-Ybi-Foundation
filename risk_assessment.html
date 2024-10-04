@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Osteoporosis Risk Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6">Osteoporosis Risk Assessment</h1>
+        <p class="mb-4 text-gray-600">Enter patient information to assess osteoporosis risk.</p>
+        
+        <form method="POST" class="space-y-4">
+            <div>
+                <label for="age" class="block text-sm font-medium text-gray-700">Age</label>
+                <input type="number" id="age" name="age" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Gender</label>
+                <div class="mt-2 space-y-2">
+                    <div class="flex items-center">
+                        <input id="female" name="gender" type="radio" value="female" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" required>
+                        <label for="female" class="ml-3 block text-sm font-medium text-gray-700">Female</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="male" name="gender" type="radio" value="male" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="male" class="ml-3 block text-sm font-medium text-gray-700">Male</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <label for="weight" class="block text-sm font-medium text-gray-700">Weight (kg)</label>
+                <input type="number" id="weight" name="weight" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <div>
+                <label for="height" class="block text-sm font-medium text-gray-700">Height (cm)</label>
+                <input type="number" id="height" name="height" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Family History of Osteoporosis</label>
+                <div class="mt-2 space-y-2">
+                    <div class="flex items-center">
+                        <input id="yes" name="familyHistory" type="radio" value="yes" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" required>
+                        <label for="yes" class="ml-3 block text-sm font-medium text-gray-700">Yes</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="no" name="familyHistory" type="radio" value="no" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300">
+                        <label for="no" class="ml-3 block text-sm font-medium text-gray-700">No</label>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Calculate Risk
+            </button>
+        </form>
+        
+        {% if result %}
+        <div class="mt-6">
+            <h3 class="text-lg font-semibold mb-2">Result:</h3>
+            <p class="mb-2">{{ result }}</p>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <!---<div class="bg-blue-600 h-2.5 rounded-full" style="width: {{ risk }}%;"></div>-->
+            </div>
+            <p class="mt-2 text-sm text-gray-500">Risk level: {{ "%.2f"|format(risk) }}%</p>
+        </div>
+        {% endif %}
+        
+        <a href="./home.html" class="mt-4 inline-block text-sm text-indigo-600 hover:text-indigo-500">Back to Home</a>
+    </div>
+</body>
+</html>
